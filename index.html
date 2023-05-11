@@ -23,11 +23,59 @@
 
 <script>
     // Initierar kartan
-    // Startpunkt på Jönköping
+    // Med utgångspunkt Jönköping
     var map = L.map('map').setView([57.782614, 14.161788], 13);
-    // Osm = Open Street Map lager 
-    var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+
+    // Layer: Open Street Map (standard)
+    // var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    // });
+    // osm.addTo(map);
+
+    // Layer: CartoDB Voyager
+    // var voyager = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    //     subdomains: 'abcd',
+    //     maxZoom: 20
+    // });
+
+    // voyager.addTo(map)
+
+    // Layer: Stadia AlidadeSmooth 
+    // var alidadeSmooth = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
+    //     maxZoom: 20,
+    //     attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+    // });
+
+    // alidadeSmooth.addTo(map)
+
+    // Layer: Google Streets
+    googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
     });
-    osm.addTo(map);
+
+    googleStreets.addTo(map)
+
+    // Layer: Google Hybrid
+    googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    });
+
+    googleHybrid.addTo(map)
+
+
+    // Marker
+    var myIcon = L.icon({
+        iconUrl: 'img/Map-Pin.svg',
+        iconSize: [32, 69],
+    });
+
+    var singleMarker = L.marker([57.78238562171815, 14.141813132857695], { icon: myIcon });
+    var popUp = singleMarker.bindPopup("Dansbana Fröjden").openPopup()
+    popUp.addTo(map)
+
+
+
 </script>
